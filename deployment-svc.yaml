@@ -102,6 +102,6 @@ spec:
   selector:
     app: udagram-api-user
   ports:
-    - protocol: TCP
-      port: 8080
+    - port: 8080
       targetPort: 8080
+# from ports, removed protocol: TCP
