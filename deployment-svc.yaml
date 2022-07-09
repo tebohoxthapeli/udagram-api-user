@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-user
+  name: backend-user
   labels:
-    app: udagram-api-user
+    app: backend-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-api-user
+      app: backend-user
   template:
     metadata:
       labels:
-        app: udagram-api-user
+        app: backend-user
     spec:
       containers:
         - name: backend-user
-          image: tebohoxthapeli/udagram-api-user:latest
+          image: tebohoxthapeli/udagram-api-user:v1.2.0
           ports:
             - containerPort: 8080
           env:
@@ -100,8 +100,8 @@ metadata:
     service: backend-user
 spec:
   selector:
-    app: udagram-api-user
+    app: backend-user
   ports:
     - port: 8080
       targetPort: 8080
-# from ports, removed protocol: TCP
+      protocol: TCP
