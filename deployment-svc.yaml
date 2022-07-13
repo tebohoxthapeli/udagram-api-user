@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-user
@@ -21,7 +21,7 @@ spec:
             secretName: aws-secret
       containers:
         - name: backend-user
-          image: tebohoxthapeli/backend-user:v3
+          image: tebohoxthapeli/backend-user:v4
           imagePullPolicy: Always
           volumeMounts:
             - name: aws-secret
