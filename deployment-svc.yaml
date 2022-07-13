@@ -21,7 +21,7 @@ spec:
             secretName: aws-secret
       containers:
         - name: backend-user
-          image: tebohoxthapeli/backend-user:v4
+          image: tebohoxthapeli/backend-user:v5
           imagePullPolicy: Always
           volumeMounts:
             - name: aws-secret
