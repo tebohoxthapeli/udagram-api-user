@@ -14,9 +14,19 @@ spec:
       labels:
         app: backend-user
     spec:
+      restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
       containers:
         - name: backend-user
-          image: tebohoxthapeli/backend-user:v2
+          image: tebohoxthapeli/backend-user:v3
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
           ports:
             - containerPort: 8080
           env:
@@ -55,18 +65,6 @@ spec:
                 configMapKeyRef:
                   name: env-configmap
                   key: AWS_PROFILE
-
-            - name: aws_access_key_id
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: aws_access_key_id
-
-            - name: aws_secret_access_key
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: aws_secret_access_key
 
             - name: JWT_SECRET
               valueFrom:
